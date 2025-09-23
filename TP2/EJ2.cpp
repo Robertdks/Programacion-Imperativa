@@ -19,9 +19,9 @@ void ordenar_array(int array [], int dl)
     int aux = 0;
     for(int i = 0; i < dl ; i++)
     {
-        for(int j = 0; j < dl ; j++)
+        for(int j = 0; j < dl - 1 ; j++)
         {
-            if(array [i] > array[j+1])
+            if(array [j] > array[j+1])
             {
                 aux = array [j + 1] ;
                 array [j + 1] = array[j];
@@ -37,6 +37,17 @@ void imprimir_array(int array[], int dl)
         cout << array[i] << " ";
     }
 }
+bool buscar_elemento(int arreglo [] , int dl, int dato)
+{
+    for(int i =  0; i < dl ; i++)
+    {
+        if (dato == arreglo[i])
+        {
+            return true ;
+        }
+    }
+    return false ;
+}
 int main()
 {
     const int df = 100 ;
@@ -45,6 +56,15 @@ int main()
     int numero = 0;
     cargar_array(numeros,df,dl);
     ordenar_array(numeros,dl);
-    imprimir_array(numeros,dl);
+    cout << "Ingresa un numemro a buscar en el arreglo: " ;
+    cin >> numero ;
+    if(buscar_elemento(numeros,dl,numero))
+    {
+        cout << "El numero " << numero << " se encuentra en el arreglo." << endl ;
+    }
+    else
+    {
+        cout << "El numero "<< numero << " no se encuentra en el arreglo." << endl ;
+    }
     return 0 ;
 }
