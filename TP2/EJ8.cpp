@@ -12,8 +12,7 @@ struct Persona
 };
 string mayuscula(string palabra)
 {
-    int aux = 0;
-    aux = palabra.length();
+    int aux = palabra.length();
     for (int i = 0; i < aux; i++)
     {
         palabra[i] = toupper(palabra[i]) ;
