@@ -2,16 +2,10 @@
 #include <string>
 using namespace std ;
 const int MAX_ALUMNOS = 5000;
-struct Nota
-{
-    int primer ;
-    int segundo ;
-    int tercer ;
-};
 struct Estudiante
 {
+    int calificacion [3] ;
     string nombre ;
-    Nota calificacion ;
 };
 string mayuscula(string palabra)
 {
@@ -23,6 +17,17 @@ string mayuscula(string palabra)
     }
     return palabra ;
 }
+float promedio(int dl)
+{
+    Estudiante notas[dl];
+    float suma = 0;
+    for (int  i = 0; i < 3; i++)
+    {
+        suma += notas[dl].calificacion[i] ;
+    }
+    return suma ;
+    
+}
 void cargar_nota(Estudiante array[], int & dl)
 {
     string aux ;
@@ -31,12 +36,11 @@ void cargar_nota(Estudiante array[], int & dl)
     while(mayuscula(aux) != "FIN" && dl < MAX_ALUMNOS)
     {
         array[dl].nombre = aux ;
-        cout << "Nota del primer cuatrimestre: ";
-        cin >> array[dl].calificacion.primer ;
-        cout << "Nota del segundo cuatrimestre: ";
-        cin >> array[dl].calificacion.segundo ;
-        cout << "Nota del tercer cuatrimestre: ";
-        cin >> array[dl].calificacion.tercer ;
+        for(int i = 0; i < 3 ; i++)
+        {
+            cout << i + 1 <<" Cuatrimestre: ";
+            cin >> array[dl].calificacion[i];
+        }
         dl++;
         cout <<"\nDatos registrados exitosamente!.";
         cout << "\nNombre: " ;
@@ -48,15 +52,15 @@ void mostrar_calificaiones(Estudiante array [], int dl)
 {
     for (int i = 0; i < dl ; i++)
     {
-        if(array[i].calificacion.primer > 5 && array[i].calificacion.segundo > 5 && array[i].calificacion.tercer > 5)
+        if(promedio(dl) >= 5)
         {
-            cout << "Estudiante: " << array [i].nombre << " ";
-            cout << "Calificacion: APTO" << endl ;;
+        cout << "Estudiante: " << array [i].nombre << " ";
+        cout << "Calificacion: APTO" << endl ;;
         }
         else
         {
-            cout << "Estudiante: " << array[i].nombre << " ";
-            cout << "Calificacion: NO APTO"<< endl ;
+        cout << "Estudiante: " << array[i].nombre << " ";
+        cout << "Calificacion: NO APTO"<< endl ;
         }
     }
 }
