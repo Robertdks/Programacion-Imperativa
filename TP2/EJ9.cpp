@@ -17,15 +17,17 @@ string mayuscula(string palabra)
     }
     return palabra ;
 }
-float promedio(int dl)
+bool apto(int dl)
 {
     Estudiante notas[dl];
     float suma = 0;
     for (int  i = 0; i < 3; i++)
     {
-        suma += notas[dl].calificacion[i] ;
-    }
-    return suma ;
+        if(notas[dl].calificaion[i] < 5)
+        {
+            return false ;
+        }
+    return true ;
     
 }
 void cargar_nota(Estudiante array[], int & dl)
@@ -52,7 +54,7 @@ void mostrar_calificaiones(Estudiante array [], int dl)
 {
     for (int i = 0; i < dl ; i++)
     {
-        if(promedio(dl) >= 5)
+        if(apto(dl)
         {
         cout << "Estudiante: " << array [i].nombre << " ";
         cout << "Calificacion: APTO" << endl ;;
