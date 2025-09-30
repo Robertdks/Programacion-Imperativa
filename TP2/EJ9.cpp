@@ -17,18 +17,16 @@ string mayuscula(string palabra)
     }
     return palabra ;
 }
-bool apto(int dl)
+bool apto(Estudiante notas[],int posicion)
 {
-    Estudiante notas[dl];
-    float suma = 0;
     for (int  i = 0; i < 3; i++)
     {
-        if(notas[dl].calificaion[i] < 5)
+        if(notas[posicion].calificacion[i] < 5)
         {
             return false ;
         }
+    }
     return true ;
-    
 }
 void cargar_nota(Estudiante array[], int & dl)
 {
@@ -44,7 +42,7 @@ void cargar_nota(Estudiante array[], int & dl)
             cin >> array[dl].calificacion[i];
         }
         dl++;
-        cout <<"\nDatos registrados exitosamente!.";
+        cout <<"Datos registrados exitosamente!.";
         cout << "\nNombre: " ;
         cin.ignore();
         getline(cin,aux);
@@ -54,10 +52,10 @@ void mostrar_calificaiones(Estudiante array [], int dl)
 {
     for (int i = 0; i < dl ; i++)
     {
-        if(apto(dl)
+        if(apto(array,i))
         {
         cout << "Estudiante: " << array [i].nombre << " ";
-        cout << "Calificacion: APTO" << endl ;;
+        cout << "Calificacion: APTO" << endl ;
         }
         else
         {

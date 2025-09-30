@@ -12,7 +12,7 @@ struct Persona
 };
 struct Dato
 {
-    int calificacion[2];
+    int calificacion[4];
     int inacistencias ;
     int asistencias ;
 };
@@ -40,6 +40,15 @@ string mayuscula(string palabra)
     }
     return palabra ;
 }
+void cargar_nota(int dl)
+{
+    Estudiante notas[dl];
+    for(int i = 0; i < 4 ;i ++)
+    {
+        cout << i + 1  << " Cuatrimestre: ";
+        cin >>notas[dl].academico.calificacion[i]; 
+    }
+}
 void cargar_array(Estudiante array [], int dl )
 {
     string aux ;
@@ -54,7 +63,14 @@ void cargar_array(Estudiante array [], int dl )
         cin >> array[dl].personal.edad;
         cout << "DNI: " ;
         getline(cin>>ws,array[dl].personal.DNI);
-    }   
+        array[dl].legajo = array[dl].personal.DNI ;
+        cargar_nota(dl) ;
+        cout << "Cantidad de asistencias: " ;
+        cin >> array[dl].academico.asistencias;
+        cout << "Cantidad de inacistencias: " ;
+        cin >> array[dl].academico.inacistencias ;
+
+    }
 }
 void menu()
 {
