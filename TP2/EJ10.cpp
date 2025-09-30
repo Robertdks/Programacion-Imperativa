@@ -78,7 +78,7 @@ void cargar_array(Estudiante array [], int & dl )
         cargar_nota(array,dl) ;
         cout << "Cantidad de asistencias: " ;
         cin >> array[dl].academico.asistencias;
-        cout << "Cantidad de inacistencias: " ;
+        cout << "Cantidad de inasistencias: " ;
         cin >> array[dl].academico.inacistencias ;
         dl ++ ;
         system("clear");
@@ -88,7 +88,7 @@ void cargar_array(Estudiante array [], int & dl )
 
     }
 }
-void opcionB(Estudiante array[],int dl)
+void Asistencia(Estudiante array[],int dl)
 {
         for (int i = 0; i < dl ; i++)
         {
@@ -102,7 +102,7 @@ void opcionB(Estudiante array[],int dl)
             }
         }
 }
-void opcionC(Estudiante array[], int dl)
+void Promedio_superior(Estudiante array[], int dl)
 {
     cout << "Estudiantes con promedio mayor al de promedio general: " << endl ;
     for(int i = 0; i < dl ; i++)
@@ -165,10 +165,10 @@ void menu(Estudiante array [], int & dl)
             system("clear");
             break;
         case 'B':
-            opcionB(array,dl) ;
+            Asistencia(array,dl) ;
             break;
         case 'C':
-            opcionC(array,dl);
+            Promedio_superior(array,dl);
             break;
         case 'D':
             opcionD(array,dl);
