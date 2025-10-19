@@ -4,51 +4,23 @@ using namespace std;
 
 struct Nodo
 {
-    int dato ;
-    Nodo *siguiente ;
+    int data ; 
+    Nodo * head ;
 };
-
-void InsertarLista (Nodo *&lista)
-{   
-    Nodo *nuevo ;
-    Nodo *ultimo  = nullptr;
-    int num ;
-    cout <<"Ingrese un numero [0] para finalizar: " ;
-    cin >> num;
-    while(num != 0)
-    {   
-        nuevo = new Nodo() ;
-        nuevo->dato = num ;
-        nuevo->siguiente = nullptr ;
-        if (lista == nullptr)
-        {
-            lista = nuevo ; // Primer nodo
-        }
-        else
-        {
-            ultimo->siguiente = nuevo ; // Se enlaza al último
-        }
-        ultimo = nuevo ;
-        cout << "Ingrese un numero: " ;
-        cin >>num;
-    }
-}
-void MostrarLista(Nodo* Lista)
+void InsertList(Nodo* &list, int data)
 {
-    Nodo* actual = Lista ;
-    cout << "\nLista enlazada: " ;
-    while(actual != nullptr)
-    {
-        cout << actual->dato <<" -> ";
-        actual=actual->siguiente ;
-    }
-    cout << "NULL\n"  ;
+    Nodo * NewList = new Nodo ;
+    list->data = data;
+    NewList->head = list ;
+    list = NewList;
+    cout <<"Ingrese un numero: ";
+    cin >> list->data ;
 }
 int main()
 {
-
-    Nodo * Lista = NULL;
-    InsertarLista(Lista);
-    MostrarLista(Lista);
+    Nodo *list = nullptr;
+    list->data = 5;
+    int data = 0;
+    InsertList(list,data);
     return 0 ;
 }
