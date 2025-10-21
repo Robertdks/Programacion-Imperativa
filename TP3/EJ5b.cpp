@@ -23,7 +23,7 @@ void InsertList(Nodo* & List )
         }
         else
         {
-            Nodo * temp = List ;
+            Nodo * temp = List ; //usamos una var temp para evitar perdir la cabeza
             while (temp->next != nullptr)
             {
                 temp = temp->next ;
