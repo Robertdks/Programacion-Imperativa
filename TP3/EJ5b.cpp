@@ -28,7 +28,7 @@ void InsertList(Nodo* & List )
             {
                 temp = temp->next ;
             }
-            temp->next = NewNodo ;
+            temp->next = NewNodo ; 
         }
         cout << "Ingrese un numero [0] para finalizar: ";
         cin >> aux ; 
@@ -40,7 +40,7 @@ void ShowList(Nodo* List)
     while(Aux != nullptr)
     {
         cout << Aux->data << " -> " ;
-        Aux = Aux->next ;
+        Aux = Aux->next ; // apunta al siguiente nodo
     }
     cout << "NULL" ;
 }
