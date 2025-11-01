@@ -9,18 +9,42 @@ struct Nodo
 
 void InsertList(Nodo * & List)
 {
-    int aux ;
-    Nodo * NewNodo =  new Nodo() ;
-    cout << "Ingrese un numero [0] para finalizar: " ;
-    cin >> aux ;
-    while(aux != 0)
+    int num ;
+    cout << "Ingrese un numero [0] para finalizar: ";
+    cin >> num ;
+    while (num != 0)
     {
-        
+        Nodo * NewList = new Nodo () ;
+        NewList->data = num ;
+        NewList->Next = nullptr ;
+        if ( List == nullptr || num < List->data)
+        {
+            NewList->Next = List ;
+            List = NewList ;
+        }
+        else
+        {
+            Nodo * aux = List ;
+            while(aux->Next != nullptr && aux->Next->data < num)
+            {
+                aux = aux->Next ;
+            }
+            NewList->Next = aux->Next ;
+            aux->Next = NewList ;
+        }
+        cout << "Ingrese un numero [0] para finalizar: ";
+        cin >> num ;
     }
 }
 void ShowList(Nodo * List)
 {
-
+    Nodo * aux = List ;
+    while(aux != nullptr)
+    {
+        cout << aux->data << "->" ;
+        aux = aux->Next ; 
+    }
+    cout << "NULL" ;
 }
 int main()
 {
