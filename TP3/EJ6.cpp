@@ -59,7 +59,7 @@ bool BuscarNombre(Nodo * Lista, string dato)
     Nodo * aux = Lista ;
     while(aux != nullptr)
     {
-        if (dato == aux->dato)
+        if (Mayuscula(dato) == Mayuscula(aux->dato))
         {
             return true ;
         }
@@ -69,7 +69,17 @@ bool BuscarNombre(Nodo * Lista, string dato)
 }
 bool EliminarNombre(Nodo * & Lista, string nombre)
 {
+    Nodo * aux = Lista ;
 
+    //Primero verifiquemos si el nombre se encuentra en la lista
+    if(BuscarNombre(Lista,nombre)) 
+    {
+        while (Mayuscula(aux->dato) != Mayuscula(nombre))
+        {
+            aux = aux->siguiente ;
+        }
+        
+    }
 }
 string IngresarNombre(string nombre)
 {
@@ -122,7 +132,7 @@ void menu (Nodo *& Lista, string nombre)
         break;
     }
     }
-    while(opcion != 'E');
+    while(toupper(opcion) != 'E');
      
 }
 int main ()
