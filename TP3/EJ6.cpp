@@ -16,6 +16,12 @@ string Mayuscula (string tex)
     }
     return tex ;
 }
+string IngresarNombre(string nombre)
+{
+    cout <<"Ingrese el nombre para realizar el trabajo:  ";
+    getline(cin>>ws,nombre) ;
+    return nombre ;
+}
 void InsertarLista (Nodo * & Lista)
 {
     string aux ;
@@ -52,40 +58,51 @@ void ImprimirLista(Nodo * Lista)
         cout << aux->dato << "->" ;
         aux = aux->siguiente ;
     }
-    cout << "NUll" ;
+    cout << "NUll" << endl;
 }
-bool BuscarNombre(Nodo * Lista, string dato)
+void EliminarNodo(Nodo * & Lista,string nombre)
 {
     Nodo * aux = Lista ;
-    while(aux != nullptr)
+    if (aux->dato == nombre)
     {
-        if (Mayuscula(dato) == Mayuscula(aux->dato))
-        {
-            return true ;
-        }
-        aux = aux->siguiente ;
+        Lista = Lista->siguiente ;
     }
-    return false ;
-}
-bool EliminarNombre(Nodo * & Lista, string nombre)
-{
-    Nodo * aux = Lista ;
-
-    //Primero verifiquemos si el nombre se encuentra en la lista
-    if(BuscarNombre(Lista,nombre)) 
+    else
     {
-        while (Mayuscula(aux->dato) != Mayuscula(nombre))
+        while(aux->siguiente != nullptr && aux->siguiente->dato != nombre)
         {
             aux = aux->siguiente ;
         }
-        
+        Nodo * temp = aux->siguiente ;
+        aux->siguiente = aux->siguiente->siguiente ;
+        delete temp ;
     }
 }
-string IngresarNombre(string nombre)
+Nodo * BuscarNombre(Nodo * Lista, string dato)
 {
-    cout <<"Ingrese el nombre para realizar el trabajo:  ";
-    getline(cin>>ws,nombre) ;
-    return nombre ;
+    Nodo * aux = Lista ;
+    while(aux != nullptr && Mayuscula(aux->dato) != Mayuscula(dato))
+    {
+        aux = aux->siguiente ; 
+    }
+    return aux ;
+}
+void EliminarNombre(Nodo * & Lista)
+{
+    string nombre ;
+    nombre = IngresarNombre (nombre) ;
+    //Primero verifiquemos si el nombre se encuentra en la lista
+    Nodo * temp = BuscarNombre(Lista,nombre) ;
+    if(temp != nullptr) 
+    {
+        EliminarNodo(Lista,nombre);
+        cout << "Nombre elimiando con exito!." << endl;
+    }
+    else
+    {
+        cout << "El nombre ingresado no se encuentra en la Lista." << endl;
+    }
+
 }
 void menu (Nodo *& Lista, string nombre)
 {
@@ -109,17 +126,18 @@ void menu (Nodo *& Lista, string nombre)
         InsertarLista(Lista) ;
         break;
     case    'B':
-        if (BuscarNombre(Lista,IngresarNombre(nombre)))
+        nombre = IngresarNombre(nombre);
+        if(BuscarNombre(Lista,nombre) != nullptr)
         {
-            cout << "El nombre ingresado si se encontro en la lista."<< endl;
+            cout << "El nombre si se encuentra en la lista." << endl ;
         }
-        else 
+        else
         {
-            cout << "El nombre  ingresado no se encontro en la lista."<< endl ;
+            cout << "El nombre no se encuentra en la lista." << endl ;
         }
         break;
     case    'C':
-        EliminarNombre(Lista,IngresarNombre(nombre)) ;
+        EliminarNombre(Lista) ;
         break;
     case    'D':
         ImprimirLista(Lista) ;
