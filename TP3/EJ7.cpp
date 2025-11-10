@@ -219,7 +219,7 @@ void menu (Nodo * & Lista,Nodo * & Pares , Nodo * & Impares)
             default:
                 cout << "Opcion invalida. Intente nuevamente.\n";
         }
-    } while (opcion != '6');
+    } while (opcion != 'F');
 }
 int main ()
 {
