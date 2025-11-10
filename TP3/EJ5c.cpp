@@ -25,7 +25,7 @@ void InsertList(Nodo * & List)
         else
         {
             Nodo * aux = List ;
-            while(aux->Next != nullptr && aux->Next->data > num)
+            while(aux->Next != nullptr && aux->Next->data < num)
             {
                 aux = aux->Next ;
             }

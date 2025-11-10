@@ -35,12 +35,36 @@ bool  VerificarNumero(Nodo * Lista, int numero)
     }
     return false ;
 } 
-void InsertarNodo(Nodo *& Lista, Nodo Nuevo) //Se encarga de hacer el enlace en la posición correcta
+void InsertarNodo(Nodo *& Lista, Nodo * Nuevo) //Se encarga de hacer el enlace en la posición correcta
 {
-
+    if(Lista == nullptr || Nuevo->dato > Lista->dato)
+    {
+        Nuevo->siguiente = Lista ;
+        Lista = Nuevo ;
+    }
+    else
+    {
+        Nodo * temp = Lista ;
+        while (temp->siguiente != nullptr && temp->siguiente->dato > Nuevo->dato)
+        {
+            temp = temp->siguiente ;
+        }
+        Nuevo->siguiente = temp->siguiente ;
+        temp->siguiente = Nuevo ;
+    }
 }
 void CargarLista(Nodo *& Lista) //Se encarga de crear el nuevo nodo y llenar la lista
 {
+    int aux ;
+    while (aux != 0)
+    {
+        cout <<"Ingrese un numero [0] para finalizar: ";
+        cin >> aux ;
+        Nodo * Nuevo = new Nodo();
+        Nuevo->dato = aux ;
+        Nuevo->siguiente = nullptr ;
+        InsertarNodo(Lista,Nuevo) ;
+    }
     
 }
 void EliminarOcurrencias(Nodo *& Lista, int numero) // Esta función se va a encargar de elimar las ocurrencias de la lista
@@ -51,7 +75,7 @@ void EliminarOcurrencias(Nodo *& Lista, int numero) // Esta función se va a enc
         Nodo * aux = Lista ;
         while(aux != nullptr)
         {
-            if (Lista->dato == numero)
+            if (Lista->dato % numero == 0)
         {
             Eliminar = Lista ;
             Lista = Lista->siguiente ;
@@ -60,7 +84,7 @@ void EliminarOcurrencias(Nodo *& Lista, int numero) // Esta función se va a enc
         }
         else
         {
-            if (aux->siguiente != nullptr && aux->siguiente->dato == numero) 
+            if (aux->siguiente != nullptr && aux->siguiente->dato % numero == 0) 
             {
                 Eliminar = aux->siguiente ;
                 aux->siguiente = aux->siguiente->siguiente ;
@@ -117,7 +141,6 @@ void Menu(Nodo *& Lista)
         case 'C':   
             numero = IngresarNumero();
             EliminarOcurrencias(Lista,numero) ;
-            Continuar();
             break;
         case 'D':
             cout << "Saliendo....." ;
@@ -127,7 +150,7 @@ void Menu(Nodo *& Lista)
             Continuar();
             break;
         }
-    } while (opcion != toupper(opcion));
+    } while ('D' != toupper(opcion));
 
     
 }
