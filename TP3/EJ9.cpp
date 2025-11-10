@@ -45,7 +45,7 @@ void CargarLista(Nodo *& Lista) //Se encarga de crear el nuevo nodo y llenar la 
 }
 void EliminarOcurrencias(Nodo *& Lista, int numero) // Esta función se va a encargar de elimar las ocurrencias de la lista
 {
-    if (VerificarNumero(Lista,numero))
+    if (VerificarNumero(Lista,numero)) // verificamos para que el elemento si se encuentre en la lista
     {
         Nodo * Eliminar ;
         Nodo * aux = Lista ;
@@ -60,7 +60,7 @@ void EliminarOcurrencias(Nodo *& Lista, int numero) // Esta función se va a enc
         }
         else
         {
-            if (aux->siguiente != nullptr && aux->siguiente->dato == numero)
+            if (aux->siguiente != nullptr && aux->siguiente->dato == numero) 
             {
                 Eliminar = aux->siguiente ;
                 aux->siguiente = aux->siguiente->siguiente ;
