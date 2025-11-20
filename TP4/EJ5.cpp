@@ -16,5 +16,6 @@ int main ()
 {
     int n = 521 ;
     Inverso(n) ;
+    cout << endl ;
     return 0 ;
 }
